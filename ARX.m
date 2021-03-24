@@ -1,9 +1,9 @@
 clc
 clear all
-%导入数据
+%load data
 %A = xlsread('update5000.xlsx');
 load 'A.mat'
-%数据预处理：去除nan和异常值
+%precessing: remove nan and abnormal values
 data=A(2:5001,[1:12 14:373 375:734 736:1095 1097:1456]);
 
 x=[1:12];
@@ -111,7 +111,7 @@ end
 
 
 %% 
-%参数设置
+%paras setting
 treeNum=100;
 featureNum=10;
 
@@ -133,7 +133,7 @@ for lag=15
 for y=1:5
     for m=1:12
  tic
-        %划分训练测试集
+        %traning and testing
         Y1_train_in=[Y1_X(1:4000,:) Y1_m{m}(1:4000,25-lag+(y-1):25+(y-1))];%lag=1:24
         Y1_train_out=Y1_m{m}(1:4000,25+y);
         Y1_test_in=[Y1_X(4001:size(Y1,1),:) Y1_m{m}(4001:size(Y1,1),25-lag+(y-1):25+(y-1))];
